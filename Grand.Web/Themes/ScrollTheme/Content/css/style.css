@@ -938,7 +938,7 @@ body:not(.is-ready) .mat {
 /* main container */
 
 main.marginUp {
-    padding: 100px 0 0 0;
+    padding: 80px 0 0 0;
 }
 main.marginUp .custom-container {
     padding: 0 15px 15px 15px;
@@ -4287,12 +4287,12 @@ ul.opc .order-summary-content h5 {
 }
 .product-details-page .breadcrumb {
     padding: 0;
-    margin: 0 0 45px 0;
+    margin: 0 0 20px 0;
 }
 .product-details-page .overview {
     position: sticky;
     position: -webkit-sticky;
-    top: 25.4%;
+    top: 13%;
     display: table;
     overflow: hidden;
 }

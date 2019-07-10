@@ -105,13 +105,13 @@
                                 }
                             </div>
                         }
-                        <div class="buttons mt-3 d-flex justify-content-between align-items-center">
+                        @*<div class="buttons mt-3 d-flex justify-content-between align-items-center">
                             @if (item.AllowComments)
                             {
                                 <a href="@Url.RouteUrl("BlogPost", new {SeName = item.SeName})#comments" class="btn btn-secondary read-comments read-more">@string.Format(T("Blog.CommentsLink").Text, item.NumberOfComments)</a>
                             }
                             <a href="@Url.RouteUrl("BlogPost", new {SeName = item.SeName})" class="btn btn-secondary read-more">@T("Blog.MoreInfo")</a>
-                        </div>
+                        </div>*@
                     </div>
                     @await Component.InvokeAsync("Widget", new { widgetZone = "bloglist_page_inside_post", additionalData = item.Id })
                 </div>
