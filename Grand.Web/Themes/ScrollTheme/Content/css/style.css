@@ -427,7 +427,7 @@ input {
 }
 .custom-select,
 .form-control {
-	border: 1px solid #d7d7d7;
+	border: 1px solid #e5e5e5;
 }
 .custom-select:hover, .custom-select:focus, .custom-select:active,
 .form-control:hover, .form-control:focus, .form-control:active {
@@ -700,10 +700,10 @@ body:not(.is-ready) .mat {
     background-color: #1FC0A0;
     border-color: #1FC0A0;
 }
-.btn-primary:hover {
-    background-color: #005B81;
-    border-color: #005B7E;
-}
+    .btn-primary:hover {
+        background-color: #F26101;
+        border-color: #F26101;
+    }
 .btn-info {
     background-color: #0091b5;
     border-color: #0091b5;
@@ -722,15 +722,15 @@ body:not(.is-ready) .mat {
     background-color: transparent;
 }
 .btn-outline-secondary {
-    color: #545454;
-    border-color: #888;
+    /*color: #545454;*/
+    border-color: #e5e5e5;
     background-color: #fff;
 }
-.btn-outline-secondary:hover {
-    color: #fff;
-    background-color: #000;
-    border-color: #000;
-}
+    .btn-outline-secondary:hover {
+        color: #fff;
+        background-color: #1FC0A0;
+        border-color: #1FC0A0 !important; 
+    }
 .btn-outline-white {
     border: 2px solid #fff;
     color: #fff;
@@ -866,8 +866,16 @@ body:not(.is-ready) .mat {
     position: absolute;
     width: 75px;
     height: 100%;
-    background: #1FC0A0;
+    /*background: #1FC0A0;*/
 }
+
+/*@media (min-width: 568px) {
+    .featuredCatRow,
+    .featuredManuRow {
+        top: -92px !important;
+    }
+}*/
+
 .featuredCatContainer,
 .featuredManuContainer {
     max-width: calc(100vw - 90px);
@@ -1498,7 +1506,7 @@ header.black .hl-container .dropdown.show > .btn-secondary.dropdown-toggle {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    height: 75px;
+    /*height: 75px;*/
     margin: 100px 0 0 0;
 }
 .featuredCategory-Top .name {
@@ -2098,7 +2106,7 @@ body:not(.is-ready) .search-box-button {
 	max-height: calc(100vh - 52px);
 	overflow: auto;
 	padding: 0 7.5px;
-	border: 1px solid #d7d7d7;
+	border: 1px solid #e5e5e5;
 	background: #fff;
 	box-shadow: 0px 5px 15px 1px rgba(0, 0, 0, .2);
 	z-index: 999;
@@ -2115,7 +2123,7 @@ body:not(.is-ready) .search-box-button {
 	font-weight: 700;
 	font-size: 20px;
 	padding: 0;
-	color: #1D1F20;
+	color: #1FC0A0 !important;
 }
 .advanced-search-results .products-container .container-off,
 .advanced-search-results .blog-container .container-off {
@@ -2132,7 +2140,7 @@ body:not(.is-ready) .search-box-button {
 	display: none;
 }
 .advanced-search-results .in-separator {
-	color: #1FC0A0;
+	color: #000000;
 	margin-right: 5px;
 	font-weight: 500;
 }
@@ -2144,7 +2152,7 @@ body:not(.is-ready) .search-box-button {
 }
 .advanced-search-results .categories-container .product-title,
 .advanced-search-results .manufacturers-container .product-title {
-	color: #1FC0A0;
+	color: #000000;
 	font-weight: 500;
 }
 .advanced-search-results .categories-container .container-off,
@@ -2199,7 +2207,7 @@ body:not(.is-ready) .search-box-button {
 .advanced-search-results .blog-container .product-title {
 	font-weight: 500;
 	font-size: 14px;
-	color: #1FC0A0;
+	color: #000000;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
@@ -2729,7 +2737,7 @@ ul.color-squares input {
 	align-items: center;
     justify-content: center;
     width: 100%;
-    border: 2px solid #d7d7d7;
+    border: 2px solid #e5e5e5;
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
@@ -3778,11 +3786,11 @@ list settings .list__item,
 .card.gen .card-secondary-buttons .btn-secondary .lnr {
     font-weight: 700;
 }
-.card.gen .card-secondary-buttons .btn-secondary:hover {
-    color: #fff;
-    background-color: #F26101;
-    border-color: #F26101;
-}
+    .card.gen .card-secondary-buttons .btn-secondary:hover {
+        color: #fff;
+        background-color: #1FC0A0;
+        border-color: #1FC0A0;
+    }
 .card.gen:hover .card-secondary-buttons .btn-secondary {
     transform: scale(1);
     visibility: visible;
@@ -3908,7 +3916,7 @@ list settings .list__item,
     margin: 65px 0 0 0;
 }
 .product-tabs-container .product-tabs.nav-tabs {
-    border-bottom: 1px solid #d7d7d7;
+    border-bottom: 1px solid #e5e5e5;
 }
 .product-tabs-container .product-tabs.nav-tabs .nav-item,
 .custom-nav-tabs .nav-item {
@@ -3917,7 +3925,7 @@ list settings .list__item,
 .separator {
     width: 100%;
     height: 1px;
-    background: #d7d7d7;
+    background: #e5e5e5;
     margin: 30px 0;
 }
 .product-details-page .product-share {
@@ -4275,7 +4283,7 @@ ul.opc .order-summary-content h5 {
 /*product*/
 
 .product-details-page .item-container {
-    margin: 8% auto 8% auto;
+    margin: 2% auto 2% auto;
 }
 .product-details-page .breadcrumb {
     padding: 0;
@@ -4422,7 +4430,7 @@ ul.opc .order-summary-content h5 {
 }
 .product-details-page .review-container {
     padding: 15px;
-    border: 1px solid #d7d7d7;
+    border: 1px solid #e5e5e5;
 }
 .product-details-page .gallery .zoom {
     cursor: crosshair;
@@ -4543,7 +4551,7 @@ ul.opc .order-summary-content h5 {
 
 .product-quickview .product-details-page {
 	background: #fff;
-	padding: 15px;
+	/*padding: 15px;*/
 }
 .product-quickview .close {
 	right: 0;
@@ -4714,7 +4722,7 @@ table {
 	margin-top: 16px;
 }
 .topic-post .card {
-    border: 1px solid #d7d7d7;
+    border: 1px solid #e5e5e5;
 }
 /*!important - to handle external js*/
 
@@ -5026,7 +5034,7 @@ valid mgs .input-validation-error {
 	margin-bottom: 0;
 }
 .shopping-cart tbody tr {
-    border-bottom: 1px solid #d7d7d7;
+    border-bottom: 1px solid #e5e5e5;
 }
 .shopping-cart .product-unit-price.price,
 .shopping-cart .product-subtotal.price,
@@ -5165,7 +5173,7 @@ input[type='checkbox'].checkbox-u:checked + label:after {
 .shopping-cart-page .deals,
 .shopping-cart-page .estimate-shipping {
 	margin-bottom: 15px;
-	border: 1px solid #d7d7d7;
+	border: 1px solid #e5e5e5;
 	border-radius: 0;
 }
 .shopping-cart-page .totals td {
@@ -5659,9 +5667,9 @@ span.product-quantity {
     transform: rotate(180deg);
 }
 .product-details-page .attributes {
-    border: 3px solid #888;
+    border: 3px solid #e5e5e5;
     background-color: #fff;
-    box-shadow: 0 2px 15px 0px rgba(0, 0, 0, 0.3);
+    /*box-shadow: 0 2px 15px 0px rgba(0, 0, 0, 0.3);*/
     z-index: 2;
     transition: all .3s ease-in-out;
 }
@@ -8173,7 +8181,7 @@ blockquote.administration-response {
 	color: #6c757d;
 	margin-top: 10px;
 	padding: 15px;
-	border: 1px solid #d7d7d7;
+	border: 1px solid #e5e5e5;
 	border-left: 5px solid #1FC0A0;
 }
 blockquote.administration-response p {
