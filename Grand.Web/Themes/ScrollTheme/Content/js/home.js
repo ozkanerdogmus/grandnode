@@ -48,11 +48,11 @@ function FeaturedNav() {
             var href = $(this).attr('data-href');
             if ($(window).width() < 992) {
                 $('html, body').animate({
-                    scrollTop: $(href).offset().top - 75
+                    scrollTop: $(href).offset().top - 60
                 }, 600);
             } else {
                 $('html, body').animate({
-                    scrollTop: $(href).offset().top
+                    scrollTop: $(href).offset().top - 70
                 }, 600);
             }
             $('.FeaturedCategory-navigation li').removeClass('active');

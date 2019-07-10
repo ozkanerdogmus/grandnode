@@ -1512,7 +1512,7 @@ header.black .hl-container .dropdown.show > .btn-secondary.dropdown-toggle {
     justify-content: space-between;
     width: 100%;
     /*height: 75px;*/
-    margin: 100px 0 0 0;
+    margin: 20px 0 20px 0;
 }
 .featuredCategory-Top .name {
     display: flex;
