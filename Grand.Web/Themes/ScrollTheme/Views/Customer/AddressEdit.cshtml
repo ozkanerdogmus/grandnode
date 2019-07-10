@@ -1,0 +1,37 @@
+﻿@model CustomerAddressEditModel
+@using Grand.Web.Models.Customer;
+@{
+    Layout = "_ColumnsTwo";
+
+    //title
+    Html.AddTitleParts(T("PageTitle.Account").Text);
+}
+@section left
+{
+    @await Component.InvokeAsync("CustomerNavigation", new { selectedTabId = CustomerNavigationEnum.Addresses })
+}
+
+<form asp-route="CustomerAddressEdit" method="post">
+    <div class="page account-page address-edit-page container mb-3 pt-3">
+        <div class="d-inline-flex justify-content-between w-100 my-3">
+            <a class="js-offcanvas-trigger filter-button" data-offcanvas-trigger="leftSide" href="#leftSide">
+                <span class="filter-menu-item">
+                    <span class="medium-line filter-line"></span>
+                    <span class="short-line filter-line"></span>
+                    <span class="long-line filter-line"></span>
+                </span>
+                <span class="filter-name">@T("Account.Navigation")</span>
+            </a>
+        </div>
+        <h2 class="h2 generalTitle">@T("Account.CustomerAddresses.Edit")</h2>
+        <div asp-validation-summary="ModelOnly" class="message-error"></div>
+        @{
+            var dataDictAddress = new ViewDataDictionary(ViewData);
+            dataDictAddress.TemplateInfo.HtmlFieldPrefix = "Address";
+            <partial name="_CreateOrUpdateAddress" model="Model.Address" view-data="dataDictAddress" />
+        }
+        <div class="buttons generalMarginSupporter">
+            <input type="submit" class="btn btn-info save-address-button" value="@T("Common.Save")" />
+        </div>
+    </div>
+</form>

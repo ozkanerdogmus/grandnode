@@ -1,0 +1,67 @@
+﻿@model HomePageBlogItemsModel
+@if (Model.Items.Any())
+{
+    <div class="blog-list-homepage col-xl-9 col-lg-8 col-md-12">
+        <h2 class="generalTitle standard text-left mb-3">
+            @T("Blog.Latest")
+            <a class="view-all btn btn-outline-secondary" href="@Url.RouteUrl("Blog")">@T("Blog.ViewAll")</a>
+        </h2>
+            <div class="nav-buttons absolute">
+                <div class="custom-nav-button prev"><span class="linearicons-chevron-left"></span></div>
+                <div class="custom-nav-button next"><span class="linearicons-chevron-right"></span></div>
+            </div>
+            <div class="swiper-container home-blog">
+                <div class="swiper-wrapper">
+                    @foreach (var item in Model.Items)
+                    {
+                        @if (item.PictureModel != null && !string.IsNullOrEmpty(item.PictureModel.ImageUrl))
+                        {
+                            <div class="swiper-slide">
+                                <div class="card p-0">
+                                    <div class="card-header p-0">
+                                        <div class="img-container">
+                                            <a href="@Url.RouteUrl("BlogPost", new { SeName = item.SeName })">
+                                                <img class="card-img-top img-fluid rounded-0 lazyload" alt="@item.PictureModel.AlternateText" data-src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title">
+                                            </a>
+                                        </div>
+                                        <div class="post-date">
+                                            <span class="day">@item.CreatedOn.ToString("dd")</span>
+                                            <span class="month">@item.CreatedOn.ToString("MMM")</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-0 d-flex align-items-center flex-column">
+                                        <h4 class="h5 blog-title text-left w-100"><a href="@Url.RouteUrl("BlogPost", new { SeName = item.SeName })">@item.Title</a></h4>
+                                        <div class="desc-short">
+                                            @Html.Raw(item.Short)
+                                        </div>
+                                        <div class="d-flex justify-content-center w-100">
+                                            <a class="btn btn-sm btn-secondary read-more mt-3" href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })">@T("Blog.MoreInfo")</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="swiper-slide">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="card p-0">
+                                            <h3 class="h5 mb-2"><a href="@Url.RouteUrl("BlogPost", new { SeName = item.SeName })">@item.Title</a></h3>
+                                            <h6 class="mt-0 text-muted d-flex align-items-center"><span class="lnr linearicons-alarm2 mr-2"></span>@item.CreatedOn.ToString("D")</h6>
+                                            <div class="desc-short my-3">
+                                                @Html.Raw(item.Short)
+                                            </div>
+                                            <div class="d-flex justify-content-center mt-3 w-100">
+                                                <a class="btn btn-sm btn-secondary read-more" href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })">@T("Blog.MoreInfo")</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+    </div>
+}

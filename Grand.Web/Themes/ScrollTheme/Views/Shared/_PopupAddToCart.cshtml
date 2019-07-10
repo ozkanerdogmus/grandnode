@@ -1,0 +1,268 @@
+﻿@model AddToCartModel
+@inject ShoppingCartSettings shoppingCartSettings
+@{
+    string text = "";
+    if (Model.CartType == ShoppingCartType.ShoppingCart)
+    {
+        text = string.Format(T("AddToCart.Cart.Items").Text, Model.TotalItems);
+    }
+    else if (Model.CartType == ShoppingCartType.Wishlist)
+    {
+        text = string.Format(T("AddToCart.Wishlist.Items").Text, Model.TotalItems);
+    }
+    else if (Model.CartType == ShoppingCartType.Auctions)
+    {
+        text = string.Format(T("Addtocart.Auctions.Ongoing").Text, Model.TotalItems);
+    }
+}
+@if (shoppingCartSettings.MiniShoppingCartEnabled)
+{
+    @if (Model.CartType == ShoppingCartType.ShoppingCart)
+    {
+        <div class="AddToCart-alert alert d-inline-flex w-100 border-0 mb-0 p-0">
+            <div class="icon">
+                <span class="lnr linearicons-checkmark-circle"></span>
+            </div>
+            <div class="message">
+                <div>
+                    <a class="h-weight" href="@Url.RouteUrl("Product", new { SeName = Model.ProductSeName })">
+                        @Model.ProductName
+                    </a>
+                    <div>
+                        @if (Model.CartType == ShoppingCartType.ShoppingCart)
+                        {
+                            @T("AddToCart.ShoppingCart")
+                        }
+                        else if (Model.CartType == ShoppingCartType.Wishlist)
+                        {
+                            @T("AddToCart.Wishlist")
+                        }
+                        else if (Model.CartType == ShoppingCartType.Auctions)
+                        {
+                            @T("shoppingcart.yourbidhasbeenplaced")
+                        }
+                    </div>
+                </div>
+            </div>
+            @await Component.InvokeAsync("CrossSellProducts")
+            <div class="AddToCart-close" onclick="$('.AddToCart-alert').alert('close')">
+                <span class="lnr linearicons-cross"></span>
+            </div>
+        </div>
+        }
+    }
+    else
+    {
+    <div class="modal-dialog d-flex flex-column justify-content-center my-0" role="document">
+        <div class="modal-content rounded-0 p-3">
+            <div class="modal-header rounded-0">
+                <h5 class="text-center text-white w-100 mb-0">
+                    @if (Model.CartType == ShoppingCartType.ShoppingCart)
+                    {
+                        @T("AddToCart.ShoppingCart")
+                    }
+                    else if (Model.CartType == ShoppingCartType.Wishlist)
+                    {
+                        @T("AddToCart.Wishlist")
+                    }
+                    else if (Model.CartType == ShoppingCartType.Auctions)
+                    {
+                        @T("shoppingcart.yourbidhasbeenplaced")
+                    }
+                </h5>
+                <a class="text-white" data-dismiss="modal" aria-label="Close">
+                    <span class="lnr linearicons-cross"></span>
+                </a>
+            </div>
+            <div class="modal-body px-0 pt-md-3 pt-0 pb-0">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-md-3 col-12 mb-3 d-none d-md-block pl-0">
+                            <img class="img-fluid" alt="@Model.Picture.AlternateText" src="@Model.Picture.ImageUrl" title="@Model.Picture.Title" />
+                        </div>
+                        <div class="col-md-9 col-12 mb-3 modal-border d-flex">
+                            <div class="row">
+                                <div class="form-group mb-0">
+                                    <h4 class="mb-0">
+                                        <a href="@Url.RouteUrl("Product", new { SeName = Model.ProductSeName })" class="text-center">@Model.ProductName</a>
+                                    </h4>
+                                </div>
+                                @if (!string.IsNullOrEmpty(Model.AttributeDescription))
+                                {
+                                    <div class="form-group col-12 px-0 d-none d-md-block my-2">
+                                        <label class="w-100 mb-0"><strong>@T("AddToCart.Attributes")</strong></label>
+                                        <div class="attributes">
+                                            @Html.Raw(Model.AttributeDescription)
+                                        </div>
+                                    </div>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.ReservationInfo))
+                                {
+                                    <div class="form-group col-12 px-0 d-none d-md-block">
+                                        <label class="w-100"><strong>@T("AddToCart.ReservationInfo")</strong></label>
+                                        <div class="attributes">
+                                            @Html.Raw(Model.ReservationInfo)
+                                        </div>
+                                    </div>
+                                }
+                                @if (!Model.IsAuction)
+                                {
+                                    <div class="form-group col-12 pl-0 mb-0 d-flex">
+                                        <label class="mb-0"><strong>@T("AddToCart.Qty")</strong></label>
+                                        <label class="pl-3 mb-0">@Model.Quantity</label>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="form-group col-12 pl-0 mb-0 d-flex">
+                                        @if (Model.EndTime.HasValue)
+                                        {
+                                            <div class="row w-100 mt-2">
+                                                @if (Model.EndTime > DateTime.UtcNow)
+                                                {
+                                                    <div class="col-12 countdown-container justify-content-between align-items-center">
+                                                        <div class="label">
+                                                            <strong>@T("ShoppingCart.Auctionends"):</strong>
+                                                        </div>
+                                                        <div class="time-holder">
+                                                            <div class="countdown days" data-countdown="@Model.EndTime.Value.ToLocalTime().ToString("yyyy-MM-dd HH:mm")"></div>
+                                                            <div class="title">@T("countdown.days")</div>
+                                                        </div>
+                                                        <div class="time-holder">
+                                                            <div class="countdown hours" data-countdown="@Model.EndTime.Value.ToLocalTime().ToString("yyyy-MM-dd HH:mm")"></div>
+                                                            <div class="title">@T("countdown.hours")</div>
+                                                        </div>
+                                                        <div class="time-holder">
+                                                            <div class="countdown minutes" data-countdown="@Model.EndTime.Value.ToLocalTime().ToString("yyyy-MM-dd HH:mm")"></div>
+                                                            <div class="title">@T("countdown.minutes")</div>
+                                                        </div>
+                                                        <div class="time-holder">
+                                                            <div class="countdown seconds" data-countdown="@Model.EndTime.Value.ToLocalTime().ToString("yyyy-MM-dd HH:mm")"></div>
+                                                            <div class="title">@T("countdown.seconds")</div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="col-12">
+                                                        <label>@T("ShoppingCart.Auctionends"): @Model.EndTime.Value.ToLocalTime()</label>
+                                                    </div>
+                                                }
+                                                <div class="col-12 separator mx-3"></div>
+                                            </div>
+                                            <script asp-location="Footer">
+                                                $(document).ready(function () {
+                                                    $('.countdown.days').each(function () {
+                                                        var $this = $(this), finalDate = $(this).data('countdown');
+                                                        $this.countdown(finalDate, function (event) {
+                                                            if (event.strftime('%D') > 0) {
+                                                                $this.html(event.strftime('%D'));
+                                                            }
+                                                            else {
+                                                                $this.html(event.strftime('0'));
+                                                            }
+                                                        });
+                                                    });
+                                                    $('.countdown.hours').each(function () {
+                                                        var $this = $(this), finalDate = $(this).data('countdown');
+                                                        $this.countdown(finalDate, function (event) {
+                                                            if (event.strftime('%H') > 0) {
+                                                                $this.html(event.strftime('%H'));
+                                                            }
+                                                            else {
+                                                                $this.html(event.strftime('00'));
+                                                            }
+                                                        });
+                                                    });
+                                                    $('.countdown.minutes').each(function () {
+                                                        var $this = $(this), finalDate = $(this).data('countdown');
+                                                        $this.countdown(finalDate, function (event) {
+                                                            if (event.strftime('%M') > 0) {
+                                                                $this.html(event.strftime('%M'));
+                                                            }
+                                                            else {
+                                                                $this.html(event.strftime('00'));
+                                                            }
+                                                        });
+                                                    });
+                                                    $('.countdown.seconds').each(function () {
+                                                        var $this = $(this), finalDate = $(this).data('countdown');
+                                                        $this.countdown(finalDate, function (event) {
+                                                            if (event.strftime('%S') > 0) {
+                                                                $this.html(event.strftime('%S'));
+                                                            }
+                                                            else {
+                                                                $this.html(event.strftime('00'));
+                                                            }
+                                                        });
+                                                    });
+                                                });
+                                            </script>
+                                        }
+                                    </div>
+                                }
+
+                                <div class="form-group col-12 pl-0 mb-1 d-flex">
+                                    @if (Model.IsAuction)
+                                    {
+                                        <label class=""><strong>@T("AddToCart.Yourbid"):</strong></label>
+                                        <label class="pl-3 mb-0">@Model.HighestBid</label>
+                                    }
+                                    else
+                                    {
+                                        <label class=""><strong>@T("AddToCart.Price")</strong></label>
+                                        <label class="pl-3 mb-0">@Model.Price</label>
+                                    }
+                                </div>
+                                <div class="text-center modal-padding-off w-100 p-3">
+                                    <h5 class="w-100 mb-0">@text</h5>
+                                    @if (!string.IsNullOrEmpty(Model.SubTotalDiscount))
+                                    {
+                                        <div class="form-group mb-1 d-flex justify-content-center">
+                                            <label class="text-muted mb-0">@T("AddToCart.SubTotalDiscount")</label>
+                                            <label class="pl-3 mb-0 text-muted">@Model.SubTotalDiscount</label>
+                                        </div>
+                                    }
+                                    @if (!string.IsNullOrEmpty(Model.SubTotal))
+                                    {
+                                        <div class="form-group mb-0 d-flex justify-content-center">
+                                            <label class="text-dark mb-0">@T("AddToCart.SubTotal")</label>
+                                            <label class="pl-3 mb-0 text-dark mb-0">@Model.SubTotal</label>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer px-0 pb-0">
+                    <div class="btn-group offset-md-5 col-md-7 col-12 px-0">
+                        <button type="button" class="btn btn-secondary w-100 text-uppercase mr-1 d-flex justify-content-center" data-dismiss="modal">@T("AddToCart.Continue")</button>
+                        @if (Model.CartType == ShoppingCartType.ShoppingCart)
+                        {
+                            <button type="button" class="btn btn-primary w-100 d-flex justify-content-center text-uppercase ml-0 border-left-0" onclick="setLocation('@(Url.RouteUrl("ShoppingCart"))')">@T("AddToCart.ViewCart")</button>
+                        }
+                        else if (Model.CartType == ShoppingCartType.Wishlist)
+                        {
+                            <button type="button" class="btn btn-primary w-100 d-flex justify-content-center text-uppercase ml-0 border-left-0" onclick="setLocation('@(Url.RouteUrl("Wishlist"))')">@T("AddToCart.ViewWishlist")</button>
+                        }
+                        else if (Model.CartType == ShoppingCartType.Auctions)
+                        {
+                            <button type="button" class="btn btn-primary w-100 d-flex justify-content-center text-uppercase ml-0 border-left-0" onclick="setLocation('@(Url.RouteUrl("CustomerAuctions"))')">@T("AddToCart.ViewAuctions")</button>
+                        }
+                    </div>
+                </div>
+                <div class="cross-sell-container mt-3">
+                    @await Component.InvokeAsync("CrossSellProducts")
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script>
+    $(document).ready(function () {
+        $("#ModalAddToCart .cross-sell-container .btn-quick-view").on("click", function () {
+            $('#ModalAddToCart').modal('hide');
+        });
+    });
+</script>

@@ -1,0 +1,18 @@
+﻿@model IList<ManufacturerModel>
+
+    <div class="manufacturerGrid px-3">
+        <div class="swiper-container HomeManufacturers">
+            <div class="swiper-wrapper">
+                @foreach (var item in Model)
+                {
+                    <div class="swiper-slide card gen mb-3">
+                        <div class="picture">
+                            <a href="@Url.RouteUrl("Manufacturer", new { SeName = item.SeName })" title="@item.PictureModel.Title">
+                                <img class="img-fluid" alt="@item.PictureModel.AlternateText" src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title" />
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,30 @@
+﻿@model IList<ProductOverviewModel>
+@{
+    Layout = "_ColumnsTwo";
+
+    //title
+    Html.AddTitleParts(T("PageTitle.NewProducts").Text);
+}
+@using Grand.Web.Models.Catalog;
+<div class="page recently-added-products-page mt-3">     
+        <h2 class="h2 generalTitle text-center"><a href="@Url.RouteUrl("NewProductsRSS")" class="btn btn-sm btn-outline-secondary link-rss" title="@T("Products.NewProducts.RSS.Hint")">@T("Products.NewProducts.RSS")</a> @T("Products.NewProducts")</h2>
+            <a class="js-offcanvas-trigger filter-button mb-3" data-offcanvas-trigger="leftSide" href="#leftSide">
+            <span class="filter-menu-item">
+                <span class="medium-line filter-line"></span>
+                <span class="short-line filter-line"></span>
+                <span class="long-line filter-line"></span>
+            </span>
+            <span class="filter-name">@T("catalog.selectors.fiters")</span>
+        </a>
+        @if (Model.Any())
+        {
+            <div class="row-product">
+                @foreach (var product in Model)
+                {
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 product-container mb-3">
+                        <partial name="_ProductBox" model="product" />
+                    </div>
+                }
+            </div>
+        }
+</div>

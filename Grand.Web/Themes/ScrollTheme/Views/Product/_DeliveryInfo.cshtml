@@ -1,0 +1,31 @@
+﻿@model ProductDetailsModel
+@if ((Model.FreeShippingNotificationEnabled && Model.IsFreeShipping) || !string.IsNullOrWhiteSpace(Model.DeliveryDate)
+    || Model.NotReturnable || Model.AdditionalShippingCharge > 0)
+{
+    <div class="delivery generalMarginSupporter">
+        @if (Model.FreeShippingNotificationEnabled && Model.IsFreeShipping)
+        {
+            <div class="free-shipping d-inline-flex align-items-center w-100"><span class="lnr linearicons-ship mr-2"></span>  @T("Products.FreeShipping")</div>
+        }
+        @if (!string.IsNullOrWhiteSpace(Model.DeliveryDate))
+        {
+            <div class="delivery-date d-inline-flex align-items-center" style="color:@(Model.DeliveryColorSquaresRgb)">
+                <span class="label">@T("Products.DeliveryDate"):</span>
+                <span class="lnr linearicons-calendar-full mx-2"></span>
+                <span class="value">@Model.DeliveryDate</span>
+            </div>
+        }
+        @if (Model.NotReturnable)
+        {
+            <div class="d-inline-flex align-items-center w-100"><span class="lnr linearicons-sync-crossed mr-2"></span> @T("Products.NotReturnable")</div>
+        }
+        @if (Model.AdditionalShippingCharge > 0 && !Model.IsFreeShipping)
+        {
+            <div class="additional-shipping-charge btn btn-sm btn-secondary">
+                <span class="lnr linearicons-ship"></span>
+                <span class="label">@T("Products.AdditionalShippingCharge")</span>
+                <span class="value">@Model.AdditionalShippingChargeStr</span>
+            </div>
+        }
+    </div>
+}

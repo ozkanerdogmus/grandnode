@@ -1,0 +1,65 @@
+﻿<header role="presentation">
+    @await Component.InvokeAsync("Widget", new { widgetZone = "header" })
+    <div class="home-nav">
+        <div class="d-lg-none d-flex menu-open-button">
+            <a class="js-offcanvas-trigger nav-link" data-offcanvas-trigger="left" href="#left">
+                <div id="mobile-menu-opener"><span></span><span></span><span></span></div>
+            </a>
+        </div>
+        <div class="logo mx-lg-0 mx-auto">
+            @await Component.InvokeAsync("Logo")
+        </div>
+        <div class="menu main-menu">
+            <ul class="main-menu-wrapper">
+                @await Component.InvokeAsync("TopMenu")
+            </ul>
+            <div class="main-menu-navigation">
+                <div class="main-menu-prev linearicons-chevron-left"></div>
+                <div class="main-menu-next linearicons-chevron-right"></div>
+            </div>
+        </div>
+        <ul class="hl-container">
+            <li class="nav-item searchBoxOpener">
+                <a class="nav-link" onclick="$('.searchBoxContent').toggleClass('open'); $(this).toggleClass('open');$('.searchBoxContent input[type=text]').focus()">
+                    <span class="lnr linearicons-magnifier"></span>
+                </a>
+            </li>
+            <li class="nav-item float-xs-right mr-auto dropdowns-container">
+                <div class="generalDropDown btn-toolbar float-xs-right">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle px-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="linearicons-cog icon"></span>
+                            <span class="d-lg-none d-block mx-2">@T("scroll.theme.links")</span>
+                            <span class="lnr linearicons-chevron-down"></span>
+                        </button>
+                        <div class="dropdown-menu selectors" aria-labelledby="dropdownMenuButton">
+                            @await Component.InvokeAsync("TaxTypeSelector")
+                            @await Component.InvokeAsync("CurrencySelector")
+                            @await Component.InvokeAsync("LanguageSelector")
+                            @await Component.InvokeAsync("StoreSelector")
+                        </div>
+                    </div>
+                    @await Component.InvokeAsync("Widget", new { widgetZone = "header_selectors" })
+                </div>
+            </li>
+            @await Component.InvokeAsync("HeaderLinks")
+        </ul>
+    </div>
+    <div class="mega-menu"></div>
+    <div class="simple-menu"></div>
+    @*<div class="extensions-bar">
+        test
+        <a class="price-circle" href="https://grandnode.com/grandnode-themes" data-offset="0 15 0 0" data-tooltip="tooltip" data-placement="left" title="Purchase this theme">
+            <div class="currency">
+                $
+            </div>
+            <div class="price">
+                99
+            </div>
+            <div class="gn"></div>
+        </a>
+    </div>*@
+</header>
+<div class="searchBoxContent">
+    @await Component.InvokeAsync("SearchBox")
+</div>

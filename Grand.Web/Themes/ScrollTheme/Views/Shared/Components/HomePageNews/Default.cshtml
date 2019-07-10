@@ -1,0 +1,55 @@
+﻿@model HomePageNewsItemsModel
+@if (Model.NewsItems.Any())
+{
+    <div class="news-list-homepage col-xl-3 col-lg-4 col-md-12">
+        <div class="swiper-upper-container">
+            <h2 class="generalTitle text-left">
+                <a href="@Url.RouteUrl("NewsArchive")"><span>@T("News")</span></a>
+            </h2>
+            <div class="nav-buttons absolute">
+                <div class="custom-nav-button prev"><span class="linearicons-chevron-left"></span></div>
+                <div class="custom-nav-button next"><span class="linearicons-chevron-right"></span></div>
+            </div>
+            <div class="swiper-container home-news">
+                <div class="swiper-wrapper">
+                    @foreach (var item in Model.NewsItems)
+                    {
+                        <div class="swiper-slide">
+                            <div class="card">
+                                <div class="card-header">
+                                    <a href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })">
+                                        @if (item.PictureModel != null && !string.IsNullOrEmpty(item.PictureModel.ImageUrl))
+                                        {
+                                            <div class="img-container mb-0">
+                                                <img class="lazyload img-fluid" alt="@item.PictureModel.AlternateText" data-src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title">
+                                            </div>
+                                        }
+                                        <h5 class="news-title">@item.Title</h5>
+                                    </a>
+                                    @if (item.PictureModel != null && !string.IsNullOrEmpty(item.PictureModel.ImageUrl))
+                                    {
+                                        <div class="post-date">
+                                            <span class="day">@item.CreatedOn.ToString("dd")</span>
+                                            <span class="month">@item.CreatedOn.ToString("MMM")</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <h6 class="mt-0 text-muted d-flex align-items-center"><span class="lnr linearicons-alarm2 mr-2"></span>@item.CreatedOn.ToString("D")</h6>
+                                    }
+                                </div>
+                                <div class="card-body">
+                                    @Html.Raw(item.Short)
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="view-all text-center mt-3">
+                <a class="btn btn-secondary read-more" href="@Url.RouteUrl("NewsArchive")">@T("News.ViewAll")</a>
+            </div>
+        </div>
+    </div>
+
+}

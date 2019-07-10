@@ -27,8 +27,188 @@
     <Content Include="Themes\**" CopyToPublishDirectory="PreserveNewest" Exclude="Themes\**\*.config;Themes\**\*.cshtml" />
     <Content Include="Roslyn\**" CopyToPublishDirectory="PreserveNewest" Exclude="Roslyn\**\*.dll" />
     <Content Include="logs\**" CopyToPublishDirectory="PreserveNewest" />
+    <Compile Remove="Plugins\Widgets.SwiperSlider\**" />
+    <Content Remove="Plugins\Widgets.SwiperSlider\**" />
     <Content Remove="wwwroot\content\images\thumbs\*.jpeg;wwwroot\content\images\thumbs\*.jpg;wwwroot\content\images\thumbs\*.png" />
     <Content Remove="wwwroot\bundles\*.css;wwwroot\bundles\*.js" />
+    <EmbeddedResource Remove="Plugins\Widgets.SwiperSlider\**" />
+    <None Remove="Plugins\Widgets.SwiperSlider\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Plugins\DiscountRequirements.Standard\" />
+    <Folder Include="Plugins\ExchangeRate.McExchange\" />
+    <Folder Include="Plugins\ExternalAuth.Facebook\" />
+    <Folder Include="Plugins\ExternalAuth.Google\" />
+    <Folder Include="Plugins\Feed.GoogleShopping\" />
+    <Folder Include="Plugins\Payments.BrainTree\" />
+    <Folder Include="Plugins\Payments.CashOnDelivery\" />
+    <Folder Include="Plugins\Payments.CheckMoneyOrder\" />
+    <Folder Include="Plugins\Payments.PayInStore\" />
+    <Folder Include="Plugins\Payments.PayPalStandard\" />
+    <Folder Include="Plugins\Shipping.ByWeight\" />
+    <Folder Include="Plugins\Shipping.FixedRateShipping\" />
+    <Folder Include="Plugins\Shipping.ShippingPoint\" />
+    <Folder Include="Plugins\Tax.CountryStateZip\" />
+    <Folder Include="Plugins\Tax.FixedRate\" />
+    <Folder Include="Plugins\Widgets.GoogleAnalytics\" />
+    <Folder Include="Plugins\Widgets.Slider\" />
+    <Folder Include="Plugins\Widgets.SwiperSlider\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Themes\ScrollTheme\theme.config" />
+    <None Include="Themes\ScrollTheme\Views\BackInStockSubscription\CustomerSubscriptions.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\BackInStockSubscription\SubscribePopup.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Blog\BlogPost.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Blog\Components\BlogCategories\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Blog\Components\BlogMonths\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Blog\Components\BlogTags\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Blog\List.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Boards\ActiveDiscussions.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Boards\Forum.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Boards\Index.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Boards\Search.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Boards\Topic.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Boards\TopicMove.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Boards\_CreateUpdatePost.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Boards\_CreateUpdateTopic.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Boards\_ForumGroup.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Boards\_ForumHeader.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Boards\_ForumPost.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Boards\_SearchBox.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Catalog\CategoryTemplate.ProductsInGridOrLines.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Catalog\ManufacturerAll.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Catalog\ManufacturerTemplate.ProductsInGridOrLines.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Catalog\ProductsByTag.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Catalog\Search.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Catalog\_CatalogSelectors.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Catalog\_FilterPriceBox.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Catalog\_FilterSpecsBox.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Checkout\BillingAddress.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Checkout\Completed.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Checkout\Confirm.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Checkout\OnePageCheckout.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Checkout\PaymentInfo.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Checkout\PaymentMethod.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Checkout\ShippingAddress.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Checkout\ShippingMethod.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Common\ContactUs.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Common\ContactVendor.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Common\PageNotFound.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Common\Sitemap.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Customer\AddressAdd.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Customer\AddressEdit.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Customer\Addresses.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Customer\Auctions.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Customer\Avatar.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Customer\ChangePassword.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Customer\DeleteAccount.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Customer\DownloadableProducts.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Customer\Info.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Customer\Login.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Customer\Notes.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Customer\PasswordRecovery.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Customer\Register.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Customer\RegisterResult.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Home\Index.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Newsletter\NewsletterCategory.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\News\List.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\News\NewsItem.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Order\CustomerOrders.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Order\CustomerRewardPoints.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Order\Details.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\PrivateMessages\Index.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\PrivateMessages\SendPM.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\PrivateMessages\ViewPM.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\AskQuestion.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\CompareProducts.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\Components\ProductReviews\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\NewProducts.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\ProductEmailAFriend.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\ProductReviews.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\ProductTemplate.Grouped.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\ProductTemplate.Simple.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\ProductTemplate.Simple.QuickView.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\RecentlyViewedProducts.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\_AddToCart.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\_AddToWishlist.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\_AskQuestionOnProduct.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\_AuctionInfo.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\_Availability.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\_BackInStockSubscription.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\_CompareProductsButton.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\_DeliveryInfo.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\_DownloadSample.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\_ProductAskQuestionButton.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\_ProductAttributes.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\_ProductBreadcrumb.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\_ProductDetailsPictures.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\_ProductDetailsPicturesQV.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\_ProductEmailAFriendButton.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\_ProductPrice.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\_ProductReviewHelpfulness.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\_ProductReviewOverview.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Product\_ReservationInfo.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Profile\Components\ProfileInfo\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Profile\Components\ProfilePosts\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Profile\Index.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\ReturnRequest\CustomerReturnRequests.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\ReturnRequest\ReturnRequest.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\ReturnRequest\ReturnRequestDetails.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\AdminHeaderLinks\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\CategoryFeaturedProducts\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\CategoryNavigation\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\CheckoutProgress\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\CurrencySelector\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\CustomerNavigation\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\EstimateShipping\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\FlyoutShoppingCart\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\Footer\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\ForumBreadcrumb\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\HeaderLinks\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\HomePageBestSellers\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\HomePageBlog\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\HomePageCategories\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\HomePageManufacturers\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\HomePageNews\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\HomePageProducts\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\LanguageSelector\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\Logo\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\ManufacturerFeaturedProducts\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\ManufacturerNavigation\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\NewsletterBox\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\OrderSummary\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\OrderTotals\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\PopularProductTags\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\PrivateMessagesInbox\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\PrivateMessagesSentItems\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\ProductsAlsoPurchased\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\RecentlyViewedProductsBlock\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\RelatedProducts\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\SearchBox\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\SuggestedProducts\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Components\TopMenu\Default.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Head.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\Header.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\_CategoryLine.TopMenu.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\_ColumnsHomePage.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\_ColumnsTwo.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\_CreateOrUpdateAddress.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\_DiscountBox.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\_GiftCardBox.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\_Notifications.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\_PopupAddToCart.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\_ProductBox.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\_ProductBoxList.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\_ProductBoxSwiper.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\_Root.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\_Root.Head.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\_RootHomePage.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Shared\_RootLeftSide.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\ShoppingCart\Cart.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\ShoppingCart\Wishlist.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Topic\TopicDetails.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\Vendor\ApplyVendor.cshtml" />
+    <None Include="Themes\ScrollTheme\Views\_ViewImports.cshtml" />
   </ItemGroup>
   <Target Name="PublishViews" BeforeTargets="PrepareForPublish">
     <ItemGroup>
@@ -41,12 +221,7 @@
     <Copy SourceFiles="@(ThemeViews)" DestinationFolder="$(PublishDir)/Themes/%(RecursiveDir)" SkipUnchangedFiles="true" />
     <!--<Copy SourceFiles="@(AdminViews)" DestinationFolder="$(PublishDir)/Areas/Admin/Views/%(RecursiveDir)" SkipUnchangedFiles="true" />-->
     <Copy SourceFiles="@(PluginFiles)" DestinationFolder="$(PublishDir)/Plugins/%(RecursiveDir)" SkipUnchangedFiles="true" />
-  </Target>  
-  <ItemGroup>
-    <Content Remove="Plugins\**" />
-    <Compile Remove="Plugins\**" />
-    <EmbeddedResource Remove="Plugins\**" />
-    <None Remove="Plugins\**" />
-  </ItemGroup>  
+  </Target>
+  <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="http://json.schemastore.org/npmpackagejsonlintrc" /></VisualStudio></ProjectExtensions>  
  
 </Project>

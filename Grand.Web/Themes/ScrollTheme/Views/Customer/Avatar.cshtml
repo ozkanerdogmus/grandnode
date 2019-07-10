@@ -1,0 +1,50 @@
+﻿@model CustomerAvatarModel
+@using Grand.Web.Models.Customer;
+@{
+    Layout = "_ColumnsTwo";
+
+    //title
+    Html.AddTitleParts(T("PageTitle.Account").Text);
+}
+@section left
+{
+    @await Component.InvokeAsync("CustomerNavigation", new { selectedTabId = CustomerNavigationEnum.Avatar })
+}
+<form asp-route="CustomerAvatar" method="post" enctype="multipart/form-data">
+    <div class="page account-page avatar-page container pt-3">
+        <div class="d-inline-flex justify-content-between w-100 my-3">
+            <a class="js-offcanvas-trigger filter-button" data-offcanvas-trigger="leftSide" href="#leftSide">
+                <span class="filter-menu-item">
+                    <span class="medium-line filter-line"></span>
+                    <span class="short-line filter-line"></span>
+                    <span class="long-line filter-line"></span>
+                </span>
+                <span class="filter-name">@T("Account.Navigation")</span>
+            </a>
+        </div>
+        <h2 class="h2 generalTitle">@T("Account.Avatar")</h2>
+        <div asp-validation-summary="ModelOnly" class="message-error"></div>
+        <div class="fieldset">
+            @if (!String.IsNullOrEmpty(Model.AvatarUrl))
+            {
+                <div class="image mb-3">
+                    <img class="img-thumbnail" src="@(Model.AvatarUrl)" alt="avatar" />
+                </div>
+            }
+            <label class="btn btn-outline-secondary" for="my-file-selector">
+                <input id="my-file-selector" name="uploadedFile" type="file" style="display:none;" onchange="$('#upload-file-info').html($(this).val());">
+                @T("admin.download.uploadfile")
+            </label>
+            <span class='label label-info' id="upload-file-info"></span>
+        </div>
+
+                    <div class="card-bodyquote alert alert-danger text-danger text-center">
+                        <span>@T("Account.Avatar.UploadRules")</span>
+                    </div>
+        <input type="submit" name="upload-avatar" class="btn btn-primary upload-avatar-button" value="@T("Common.Upload")" />
+        @if (!String.IsNullOrEmpty(Model.AvatarUrl))
+        {
+            <input type="submit" name="remove-avatar" class="btn btn-danger remove-avatar-button" value="@T("Account.Avatar.RemoveAvatar")" />
+        }
+    </div>
+</form>

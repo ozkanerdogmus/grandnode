@@ -1,0 +1,30 @@
+﻿@model IList<ProductOverviewModel>
+    @{
+        Layout = "_ColumnsTwo";
+
+        //title
+        Html.AddTitleParts(T("PageTitle.RecentlyViewedProducts").Text);
+    }
+    @using Grand.Web.Models.Catalog;
+    <div class="page recently-viewed-products-page mt-3">
+        <h2 class="generalTitle text-center">@T("Products.RecentlyViewedProducts")</h2>
+        <a class="js-offcanvas-trigger filter-button mb-3" data-offcanvas-trigger="leftSide" href="#leftSide">
+            <span class="filter-menu-item">
+                <span class="medium-line filter-line"></span>
+                <span class="short-line filter-line"></span>
+                <span class="long-line filter-line"></span>
+            </span>
+            <span class="filter-name">@T("catalog.selectors.fiters")</span>
+        </a>
+        @if (Model.Any())
+        {
+            <div class="row-product">
+                @foreach (var product in Model)
+                {
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 product-container">
+                        <partial name="_ProductBox" model="product" />
+                    </div>
+                }
+            </div>
+        }
+    </div>

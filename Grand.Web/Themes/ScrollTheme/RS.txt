@@ -1,0 +1,4 @@
+﻿grid.columns.3 - 3 columns
+grid.columns.4 - 4 columns
+grid.columns.5 - 5 columns
+grid.columns.6 - 6 columns

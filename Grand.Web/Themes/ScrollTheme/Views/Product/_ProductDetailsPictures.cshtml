@@ -1,0 +1,187 @@
+﻿@model ProductDetailsModel
+            @{ 
+                int i = 0;
+                int pic = 0;
+            }
+<div class="gallery galleryStandard col-12 col-md-5 col-lg-5 col-xl-6 mr-xl-auto px-0">
+        @if (!string.IsNullOrEmpty(Model.Flag))
+        {
+            <span class="new-product-label">
+                @Html.Raw(Model.Flag)
+            </span>
+        }
+        @if (Model.PictureModels.Count > 1)
+        {
+                <div class="gallery-navigation-container">
+                    <ul class="gallery-navigation">
+                        @foreach (var picture in Model.PictureModels)
+                        {
+                            <li>
+                                <a data-href="#picture_@i">
+
+                                    <span class="circle"></span>
+                                </a>
+                            </li>
+                            i++;
+                        }
+                    </ul>
+                </div>
+                <div class="mobile-picture d-md-none d-block">
+                    <a class="">
+                        <img class="img-fluid" src="@Model.DefaultPictureModel.ImageUrl" />
+                    </a>
+                </div>
+                @foreach (var picture in Model.PictureModels)
+                {
+                    <div id="picture_@pic" class="zoom_@pic zoom picture-gallery picture-@Model.Id">
+                        <a href="@picture.FullSizeImageUrl" title="@picture.Title">
+                            <img class="img-fluid"
+                                 alt="@picture.AlternateText"
+                                 src="@picture.FullSizeImageUrl"
+                                 data-fullsize="@picture.FullSizeImageUrl"
+                                 title="@picture.Title"
+                                 itemprop="image" />
+                        </a>
+                    </div>
+                    pic++;
+                }
+
+            @if (!Model.DefaultPictureZoomEnabled)
+            {
+                <script asp-location="Footer">
+                    $(document).ready(function () {
+                        $('.gallery .zoom').each(function() {
+                            $(this).magnificPopup({
+                                delegate: 'a',
+                                type: 'image',
+                                gallery: {
+                                  enabled:true
+                                }
+                            });
+                        });
+                        $('#main-product-img-lightbox-anchor-@Model.Id img').on('click', function () {
+                            var href = $(this).attr('data-fullsize');
+                            $("a[data-mfp-src$='" + href + "']").click();
+                        });
+                        $('#ModalQuickView .thumb-popup-link img').on('click', function () {
+                            var href2 = $(this).attr('data-size');
+                            $("#ModalQuickView #main-product-img-lightbox-anchor-@Model.Id img").attr("src", href2);
+                        });
+                    });
+                </script>
+            }
+            else
+            {
+                <script asp-location="Footer">
+                    $(document).ready(function () {
+                        if ($(window).width() > 991) {
+                            $('.picture-@Model.Id').zoom();
+                        }
+                        $('.gallery .zoom').click(function () {
+                            $(this).find('a').click();
+                        });
+                        $('.gallery .zoom').each(function () { // the containers for all your galleries
+                            $(this).magnificPopup({
+                                delegate: 'a', // the selector for gallery item
+                                type: 'image',
+                                gallery: {
+                                    enabled: true
+                                },
+                                zoom: {
+                                    enabled: true, // By default it's false, so don't forget to enable it
+
+                                    duration: 300, // duration of the effect, in milliseconds
+                                    easing: 'ease-in-out', // CSS transition easing function
+
+                                    // The "opener" function should return the element from which popup will be zoomed in
+                                    // and to which popup will be scaled down
+                                    // By defailt it looks for an image tag:
+                                    opener: function (openerElement) {
+                                        // openerElement is the element on which popup was initialized, in this case its <a> tag
+                                        // you don't need to add "opener" option if this code matches your needs, it's defailt one.
+                                        return openerElement.is('img') ? openerElement : openerElement.find('img');
+                                    }
+                                }
+                            });
+                        });
+                    });
+                </script>
+            }
+        }
+        else
+        {
+            <div class="zoom picture-@Model.Id">
+                <a title="@Model.DefaultPictureModel.Title"
+                   id="main-product-img-lightbox-anchor-@Model.Id">
+                    <img class="img-fluid"
+                         alt="@Model.DefaultPictureModel.AlternateText"
+                         src="@Model.DefaultPictureModel.FullSizeImageUrl"
+                         data-fullsize="@Model.DefaultPictureModel.FullSizeImageUrl"
+                         title="@Model.DefaultPictureModel.Title"
+                         itemprop="image"
+                         id="main-product-img-@Model.Id" />
+                </a>
+            </div>
+            @if (!Model.DefaultPictureZoomEnabled)
+            {
+
+                <script asp-location="Footer">
+                $(document).ready(function () {
+                    $('.product-standard #main-product-img-lightbox-anchor-@Model.Id').attr('href', "@Model.DefaultPictureModel.FullSizeImageUrl");
+                    $('.product-standard #main-product-img-lightbox-anchor-@Model.Id').magnificPopup({
+                            type: 'image',
+                            removalDelay: 300,
+                            gallery: {
+                                enabled: true,
+                                tPrev: '@T("Media.MagnificPopup.Previous")',
+                                tNext: '@T("Media.MagnificPopup.Next")',
+                                tCounter: '@T("Media.MagnificPopup.Counter")'
+                            },
+                            tClose: '@T("Media.MagnificPopup.Close")',
+                            tLoading: '@T("Media.MagnificPopup.Loading")'
+                    });
+               });
+                </script>
+            }
+            else
+            {
+                <script asp-location="Footer">
+                    $(document).ready(function () {
+                        if ($(window).width() > 768) {
+                            $('.picture-@Model.Id').zoom({
+                                url: $('#main-product-img-lightbox-anchor-@Model.Id img').attr('data-fullsize')
+                            });
+                        }
+                        $('.product-standard #main-product-img-lightbox-anchor-@Model.Id').attr('href', "@Model.DefaultPictureModel.FullSizeImageUrl");
+                        $('.product-standard #main-product-img-lightbox-anchor-@Model.Id').magnificPopup({
+                            type: 'image',
+                            removalDelay: 300,
+                            gallery: {
+                                enabled: true,
+                                tPrev: '@T("Media.MagnificPopup.Previous")',
+                                tNext: '@T("Media.MagnificPopup.Next")',
+                                tCounter: '@T("Media.MagnificPopup.Counter")'
+                            },
+                            tClose: '@T("Media.MagnificPopup.Close")',
+                            tLoading: '@T("Media.MagnificPopup.Loading")',
+                            zoom: {
+                                enabled: true,
+                                duration: 300,
+                                opener: function (element) {
+                                    return element.find('img');
+                                }
+                            }
+                        });
+                        $('.product-standard .picture-@Model.Id').on('click', function () {
+                            $(".product-standard #main-product-img-lightbox-anchor-@Model.Id").click();
+                        });
+                    });
+                </script>
+            }
+        }
+</div>
+@*<script asp-location="Footer">
+    $(document).ready(function () {
+        $('.gallery .picture-@Model.Id').trigger('zoom.destroy');
+    });
+</script>*@

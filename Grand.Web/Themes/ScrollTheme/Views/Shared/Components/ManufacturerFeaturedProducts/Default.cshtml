@@ -1,0 +1,55 @@
+﻿@model IList<ManufacturerModel>
+
+        <div class="featuredManuRow mx-0">
+            <div class="pagination-container manu">
+                <div class="FeaturedManufacturer-navigation">
+                    <ul>
+                        @foreach (var item in Model)
+                        {
+                            <li>
+                                <a data-href="#@item.Id" data-title="@item.Name">
+                                    <img alt="@item.PictureModel.AlternateText" src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title" />
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="container featuredManuContainer">
+                <div class="manufacturerGrid">
+                    @foreach (var item in Model)
+                    {
+
+                        <div id="@item.Id" class="scroll-panel">
+                            <div class="featuredCategory-Top">
+                                <div class="name">
+                                    <a class="cat-title" title="@item.Name" href="@Url.RouteUrl("Manufacturer", new { SeName = item.SeName })">
+                                        @item.Name
+                                    </a>
+                                    <a class="see-more-button btn btn-outline-secondary" href="@Url.RouteUrl("Manufacturer", new { SeName = item.SeName })">@T("scroll.theme.see.more")</a>
+                                </div>
+                                <div class="nav-buttons">
+                                    <div class="custom-nav-button prev"><span class="linearicons-chevron-left"></span></div>
+                                    <div class="custom-nav-button next"><span class="linearicons-chevron-right"></span></div>
+                                </div>
+                            </div>
+                            <div class="featuredCategory-Center">
+                                <div class="FeaturedManuSlider swiper-container">
+                                    <div class="swiper-wrapper">
+                                        @foreach (var product in item.FeaturedProducts)
+                                        {
+                                            <div class="swiper-slide">
+                                                <partial name="_ProductBoxSwiper" model="product" />
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="featuredCategory-Bottom row">
+                                @Html.Raw(item.Description)
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>

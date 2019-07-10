@@ -1,0 +1,14 @@
+﻿@model IList<ProductOverviewModel>
+
+<div class="col-lg-10 mx-auto col-12 px-0 also-purchased-products-grid generalFlexBox mt-3">
+    <h2 class="h3 generalTitle text-center">@T("Products.AlsoPurchased")</h2>
+    <div class="row-product">
+                @foreach (var item in Model)
+                {
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-6 product-container mb-3">
+                        <partial name="_ProductBox" model="item" />
+                    </div>
+                }
+    </div> 
+</div>
+

@@ -1,0 +1,81 @@
+﻿@model HeaderLinksModel
+@using System.Text.Encodings.Web
+@await Component.InvokeAsync("Widget", new { widgetZone = "header_links_before" })
+@if (Model.IsAuthenticated)
+{
+    <li class="dropdown dropdownLinks">
+        <a class="btn btn-secondary dropdown-toggle px-1" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="lnr linearicons-man icon"></span>
+            <span class="d-lg-block d-none arrow lnr linearicons-chevron-down"></span>
+            <span class="d-lg-none d-block lnr linearicons-ellipsis"></span>
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            @await Component.InvokeAsync("AdminHeaderLinks")
+            <a class="dropdown-item" href="@Url.RouteUrl("CustomerInfo")">
+                <span class="lnr linearicons-user"></span>
+                <span>@T("Account.MyAccount")</span>
+            </a>
+            <a class="dropdown-item" href="@Url.RouteUrl("Logout")">
+                <span class="lnr linearicons-lock"></span>
+                <span>@T("Account.Logout")</span>
+            </a>
+            @if (Model.AllowPrivateMessages)
+            {
+                    <a class="dropdown-item inbox-item" href="@Url.RouteUrl("PrivateMessages", new { tab = "" })">
+                        <span class="lnr linearicons-bubbles"></span>
+                        <span class="inbox-label">@T("PrivateMessages.Inbox")</span>
+                        @if (!string.IsNullOrEmpty(Model.UnreadPrivateMessages))
+                        {
+                            <span class="inbox-unread">
+                                @Model.UnreadPrivateMessages
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="inbox-unread">
+                                0
+                            </span>
+                        }
+
+                    </a>
+            }
+        </div>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link" href="@Url.RouteUrl("Login")">
+            <span class="lnr linearicons-user-lock"></span>
+        </a>
+    </li>
+}
+@if (Model.WishlistEnabled)
+{
+    <li class="nav-item wishlist-container">
+        <a class="nav-link" href="@Url.RouteUrl("Wishlist")">
+            <span class="lnr linearicons-heart"></span>
+            <span class="wishlist-qty d-none d-lg-flex">@T("Wishlist.HeaderQuantity", Model.WishlistItems)</span>
+        </a>
+    </li>
+}
+@if (Model.ShoppingCartEnabled)
+{
+    <li class="nav-item" id="topcartlink">
+            <a @if (Model.MiniShoppingCartEnabled) { <text> class="nav-link js-offcanvas-trigger cart-link" data-offcanvas-trigger="right" href="#right" </text>  } else { <text> class="nav-link cart-link" href="@Url.RouteUrl("ShoppingCart")" </text>  }>
+                <span class="lnr linearicons-bag2"></span>
+                <span class="cart-qty">@T("ShoppingCart.HeaderQuantity", Model.ShoppingCartItems)</span>
+            </a>
+    </li>
+}
+@await Component.InvokeAsync("Widget", new { widgetZone = "header_links_after" })
+@if (Model.AllowPrivateMessages && !string.IsNullOrEmpty(Model.AlertMessage))
+{
+    //new private message notification
+    <script asp-location="Footer">
+            $(document).ready(function () {
+                displayPopupNotification('@Html.Raw(JavaScriptEncoder.Default.Encode(Model.AlertMessage))', 'success', false);
+            });
+    </script>
+}

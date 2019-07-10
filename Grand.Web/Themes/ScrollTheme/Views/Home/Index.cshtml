@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "_ColumnsHomePage";
+}
+<div class="main-slider-container">
+    @await Component.InvokeAsync("Widget", new { widgetZone = "SwiperStanding" })
+</div>
+    <div class="page home-page custom-container">
+        @await Component.InvokeAsync("PushNotificationsRegistration")
+        @await Component.InvokeAsync("Widget", new { widgetZone = "home_page_top" })
+        @*@await Component.InvokeAsync("TopicBlock", new { systemName = "HomePageText" })*@
+        @await Component.InvokeAsync("CategoryFeaturedProducts")
+        <div class="row mx-0">
+            <div class="container homeContainer mw-100">
+                <div class="row">
+                    @await Component.InvokeAsync("Widget", new { widgetZone = "home_page_before_categories" })
+                    @await Component.InvokeAsync("HomePageCategories")
+                    <div class="col-12">
+                        <nav class="HomeProductsNav">
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-HomePageProducts-tab" data-toggle="tab" href="#nav-HomePageProducts" role="tab" aria-controls="nav-HomePageProducts" aria-selected="true">@T("HomePage.Products")</a>
+                                <a class="nav-item nav-link" id="nav-HomePageBestSellers-tab" data-toggle="tab" href="#nav-HomePageBestSellers" role="tab" aria-controls="nav-HomePageBestSellers" aria-selected="false">@T("Bestsellers")</a>
+                                <a class="nav-item nav-link" id="nav-SuggestedProducts-tab" data-toggle="tab" href="#nav-SuggestedProducts" role="tab" aria-controls="nav-SuggestedProducts" aria-selected="false">@T("HomePage.Suggested.Products")</a>
+                                <a class="nav-item nav-link" id="nav-RecommendedProducts-tab" data-toggle="tab" href="#nav-RecommendedProducts" role="tab" aria-controls="nav-RecommendedProducts" aria-selected="false">@T("HomePage.Recommended.Products")</a>
+                            </div>
+                        </nav>
+                        <div class="HomeProductsContent tab-content" id="nav-HomeProductsContent">
+                            <div class="tab-pane fade show active" id="nav-HomePageProducts" role="tabpanel" aria-labelledby="nav-HomePageProducts-tab">
+                                @await Component.InvokeAsync("Widget", new { widgetZone = "home_page_before_products" })
+                                @await Component.InvokeAsync("HomePageProducts")
+                            </div>
+                            <div class="tab-pane fade" id="nav-HomePageBestSellers" role="tabpanel" aria-labelledby="nav-HomePageBestSellers-tab">
+                                @await Component.InvokeAsync("Widget", new { widgetZone = "home_page_before_best_sellers" })
+                                @await Component.InvokeAsync("HomePageBestSellers")
+                            </div>
+                            <div class="tab-pane fade" id="nav-SuggestedProducts" role="tabpanel" aria-labelledby="nav-SuggestedProducts-tab">
+                                @await Component.InvokeAsync("SuggestedProducts")
+                            </div>
+                            <div class="tab-pane fade" id="nav-RecommendedProducts" role="tabpanel" aria-labelledby="nav-RecommendedProducts-tab">
+                                @await Component.InvokeAsync("RecommendedProducts")
+                            </div>
+                        </div>
+                    </div>
+                    @await Component.InvokeAsync("Widget", new { widgetZone = "home_page_before_news" })
+                    @await Component.InvokeAsync("HomePageNews")
+                    @await Component.InvokeAsync("Widget", new { widgetZone = "home_page_before_blog" })
+                    @await Component.InvokeAsync("HomePageBlog")
+                </div>
+            </div>
+        </div>
+        @await Component.InvokeAsync("Widget", new { widgetZone = "home_page_before_manufacturers" })
+        @await Component.InvokeAsync("ManufacturerFeaturedProducts")
+        @await Component.InvokeAsync("HomePageManufacturers")
+        @await Component.InvokeAsync("Widget", new { widgetZone = "home_page_bottom" })
+    </div>
