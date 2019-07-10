@@ -58,17 +58,19 @@
     }
 }
 <div class="page category-page">
+    <h2 class="generalTitle f10 text-center mb-5 ">@Model.Name</h2>
+
     @await Component.InvokeAsync("Widget", new { widgetZone = "categorydetails_top", additionalData = Model.Id })
     @*description*@
     @if (!String.IsNullOrWhiteSpace(Model.Description))
     {
         @*<div class="card category-description">
-            <div class="card-body">
-                <h2 class="card-title m-0">
-                    @Html.Raw(Model.Description)
-                </h2>
-            </div>
-        </div>*@
+                <div class="card-body">
+                    <h2 class="card-title m-0">
+                        @Html.Raw(Model.Description)
+                    </h2>
+                </div>
+            </div>*@
     }
     @await Component.InvokeAsync("Widget", new { widgetZone = "categorydetails_before_subcategories", additionalData = Model.Id })
     @*subcategories*@
@@ -125,7 +127,6 @@
     }
     @await Component.InvokeAsync("Widget", new { widgetZone = "categorydetails_after_featured_products", additionalData = Model.Id })
 
-    <h2 class="generalTitle f10 ">@Model.Name</h2>
 
     @if (Model.Products.Any())
     {
@@ -162,36 +163,37 @@
         else
         {
             <div class="row">
-                    @foreach (var product in Model.Products)
-                    {
-                        <div class="col-6">
-                            <partial name="_ProductBoxList" model="product" />
-                        </div>
-                    }
-                    @{
-                        var pager = Html.Pager(Model.PagingFilteringContext).QueryParam("pagenumber");
-                    }
-                    @if (!pager.IsEmpty())
-                    {
-                        <nav aria-label="Page navigation">
-                            @pager
-                        </nav>
-                    }
-                    @await Component.InvokeAsync("Widget", new { widgetZone = "categorydetails_bottom", additionalData = Model.Id })
+                @foreach (var product in Model.Products)
+                {
+                    <div class="col-6">
+                        <partial name="_ProductBoxList" model="product" />
+                    </div>
+                }
+                @{
+                    var pager = Html.Pager(Model.PagingFilteringContext).QueryParam("pagenumber");
+                }
+                @if (!pager.IsEmpty())
+                {
+                    <nav aria-label="Page navigation">
+                        @pager
+                    </nav>
+                }
+                @await Component.InvokeAsync("Widget", new { widgetZone = "categorydetails_bottom", additionalData = Model.Id })
             </div>
 
         }
     }
-    else {
-            <div class="no-data alert alert-danger text-danger">No product's available.</div>
-            <a class="js-offcanvas-trigger filter-button d-none" data-offcanvas-trigger="leftSide" href="#leftSide">
-                <span class="filter-menu-item">
-                    <span class="medium-line filter-line"></span>
-                    <span class="short-line filter-line"></span>
-                    <span class="long-line filter-line"></span>
-                </span>
-                <span class="filter-name">@T("catalog.selectors.fiters")</span>
-            </a>
+    else
+    {
+        <div class="no-data alert alert-danger text-danger">No product's available.</div>
+        <a class="js-offcanvas-trigger filter-button d-none" data-offcanvas-trigger="leftSide" href="#leftSide">
+            <span class="filter-menu-item">
+                <span class="medium-line filter-line"></span>
+                <span class="short-line filter-line"></span>
+                <span class="long-line filter-line"></span>
+            </span>
+            <span class="filter-name">@T("catalog.selectors.fiters")</span>
+        </a>
     }
 </div>
 @section filters
